@@ -40,25 +40,31 @@ const StyledCart = styled.div`
 `
 
 const Cart = (props) => {
+    console.log('CART PROPS', props)
     return (
         <StyledCart>
-            {props.cartProducts && (
-                props.cartProducts.map(product => (
-                    <CartProduct key={product.id} id={product.id} />
+            {props.cart.cartProducts && (
+                props.cart.cartProducts.map(product => (
+                    <CartProduct
+                        key={product[0].id}
+                        id={product[0].id}
+                        photo={product[0].photo}
+                        salePrice={product[0].salePrice}
+                        name={product[0].name} />
                 ))
             )}
             <form className="cart-info">
                 <div className='row'>
-                    <h3>Subtotal:</h3> <h3>R${!props.subtotal ? String(0) : props.subtotal}</h3>
+                    <h3>Subtotal:</h3> <h3>R${!props.cart.subTotal ? String(0) : props.cart.subTotal}</h3>
                 </div>
                 <div className="row">
-                    <h3>Desconto:</h3> <input type="number" value={`${props.discount}`} onChange={(e) => console.log(e.target.value)} />
+                    <h3>Desconto:</h3> <input type="number" value={`${props.cart.discount}`} onChange={(e) => console.log(e.target.value)} />
                 </div>
                 <div className="row">
-                    <h3>Taxa de serviço:</h3> <input type="number" value={`${props.taxService}`} onChange={(e) => console.log(e.target.value)} />
+                    <h3>Taxa de serviço:</h3> <input type="number" value={`${props.cart.taxService}`} onChange={(e) => console.log(e.target.value)} />
                 </div>
                 <div className="row">
-                    <h3>Total:</h3> <h3>R${!props.total ? String(0) : props.total}</h3>
+                    <h3>Total:</h3> <h3>R${!props.cart.total ? String(0) : props.cart.total}</h3>
                 </div>
                 <input className='submit-btn' type="submit" value="Finalizar venda"/>
             </form>

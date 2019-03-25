@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SearchBar from './SearchBar';
 import FilterCategory from './FilterCategory';
 import Cart from './Cart';
 import Products from './ProductsWrapper';
@@ -25,7 +24,6 @@ const Layout = () => {
                 <FilterCategory />
             </Column>
             <Column margin={20}>
-                <SearchBar />
                 <Products />
             </Column>
             <Column flex={0.5}>

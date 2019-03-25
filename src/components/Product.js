@@ -1,19 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { addProduct } from '../actions/cart';
 
 const StyledProduct = styled.div`
     margin: 30px;
+
     img {
-        width: 60%;
+        width: 50%;
     }
 `
 
 const Product = (props) => {
     const { photo, name, salePrice } = props.product;
 
+
     return (
-        <StyledProduct>
+        <StyledProduct onClick={() => props.dispatch(addProduct(props.product))}>
             <img src={photo} alt={name} />
             <div className="product-info">
                 <h2>{name}</h2>

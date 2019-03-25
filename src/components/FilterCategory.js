@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { filterProducts } from '../actions/data';
+import { filterProducts, resetSearch } from '../actions/data';
 
 const StyledCategory = styled.ul`
     border: 1px solid var(--orange);
@@ -37,6 +37,10 @@ const Category = (props) => {
     const { categories, currentCategory } = props;
 
     const handleCategoryChange = (categoryID) => {
+        if(props.isFilterActive) {
+            props.dispatch(resetSearch())
+        }
+
         props.dispatch(filterProducts(categoryID))
     }
 
@@ -65,6 +69,7 @@ function mapStateToProps({ data }) {
     return {
         categories: data.categories,
         currentCategory: data.currentCategory,
+        isFilterActive: data.searchedProductArray ? true : false
     }
 }
 
