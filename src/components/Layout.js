@@ -10,6 +10,13 @@ const StyledLayout = styled.div`
     max-width: 1300px;
     margin: 50px auto;
     justify-content: center;
+
+    @media(max-width: 1024px) {
+        display: block;
+        input {
+            margin-top: 20px;
+        }
+    }
 `
 
 const Column = styled.div`

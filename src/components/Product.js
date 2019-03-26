@@ -14,13 +14,24 @@ const StyledProduct = styled.div`
 const Product = (props) => {
     const { photo, name, salePrice } = props.product;
 
+    const handleAddProduct = (product) => {
+        const dispatchProductObject = {
+            id: product.id,
+            name: product.name,
+            salePrice: product.salePrice,
+            photo: product.photo,
+            productQuantity: 1
+        }
+
+        props.dispatch(addProduct(dispatchProductObject))
+    }
 
     return (
-        <StyledProduct onClick={() => props.dispatch(addProduct(props.product))}>
+        <StyledProduct onClick={() => handleAddProduct(props.product)}>
             <img src={photo} alt={name} />
             <div className="product-info">
                 <h2>{name}</h2>
-                <h3>R${salePrice}</h3>
+                <h3>R${salePrice.toFixed(2)}</h3>
             </div>
         </StyledProduct>
     )
